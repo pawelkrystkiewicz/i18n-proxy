@@ -1,0 +1,13 @@
+{
+  "name": "i18n-proxy",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Paweł <pawelkrystkiewicz@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev:local": "node api/middleware.js"
+  },
+  "dependencies": {
+    "accept-language-parser": "^1.5.0"
+  }
+}
