@@ -20,6 +20,7 @@ const server = http.createServer((req, res) => {
   const subdomain = host.split(".")[0];
   const referer = req.headers.referer || "";
   const protocol = referer.indexOf("https://") === 0 ? "https://" : "http://";
+  
   console.log(protocol, referer);
 
   if (!locales.includes(subdomain)) {
