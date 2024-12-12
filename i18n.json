@@ -1,4 +1,5 @@
 {
   "defaultLocale": "pl",
-  "locales": ["en", "pl"]
+  "locales": ["en", "pl"],
+  "baseDomain": "inventorium.pl"
 }

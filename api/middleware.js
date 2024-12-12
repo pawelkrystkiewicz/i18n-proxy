@@ -2,7 +2,7 @@ const http = require("http");
 const acceptLanguageParser = require("accept-language-parser");
 const config = require("../i18n.json");
 
-const { defaultLocale, locales } = config;
+const { baseDomain, defaultLocale, locales } = config;
 
 function detectLocale(acceptLanguage) {
   const languages = acceptLanguageParser.parse(acceptLanguage);
@@ -20,12 +20,11 @@ const server = http.createServer((req, res) => {
   const subdomain = host.split(".")[0];
   const referer = req.headers.referer || "";
   const protocol = referer.indexOf("https://") === 0 ? "https://" : "http://";
-  
-  console.log(protocol, referer);
 
   if (!locales.includes(subdomain)) {
     const detectedLocale = detectLocale(acceptLanguage);
-    const newHost = `${detectedLocale}.${host.replace(/^.*?\./, "")}`;
+    const host = baseDomain ? baseDomain : host.replace(/^.*?\./, "");
+    const newHost = `${detectedLocale}.${host}`;
 
     res.writeHead(302, { Location: `${protocol}${newHost}${req.url}` });
     return res.end();
