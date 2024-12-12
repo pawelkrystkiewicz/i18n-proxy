@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
 
   if (!locales.includes(subdomain)) {
     const detectedLocale = detectLocale(acceptLanguage);
-    const host = (baseDomain ? baseDomain : host).replace(/^.*?\./, "");
+    const host = baseDomain ? baseDomain : host.replace(/^.*?\./, "");
     const newHost = `${detectedLocale}.${host}`;
 
     res.writeHead(302, { Location: `${protocol}${newHost}${req.url}` });
